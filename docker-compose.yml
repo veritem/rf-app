@@ -1,2 +1,12 @@
-version: "3.4"
+version: "3.9"
 services:
+    db:
+        image: "postgres:latest"
+        restart: "always"
+        environment:
+            POSTGRESS_PWD: password
+            POSTGRES_DB: iot-practice
+        volumes:
+            - "db_volume:/var/lib/postgresql/data"
+volumes:
+    db_volume:
