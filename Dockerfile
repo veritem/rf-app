@@ -35,4 +35,5 @@ FROM debian:buster-slim
 
 COPY --from=builder /usr/src/target/release/app /app
 
+
 CMD [ "/app" ]

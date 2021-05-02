@@ -1,8 +1,9 @@
 version: "3.9"
 services:
     app:
-        context: .
-        dockerfile: Dockerfile
+        build: .
+        ports:
+            - "8000:8000"
     db:
         image: "postgres:latest"
         restart: always
