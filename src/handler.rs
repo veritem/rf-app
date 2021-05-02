@@ -29,6 +29,37 @@ pub fn create_transaction(
         .map_err(|error| error_status(error))
 }
 
+#[get("/<id>")]
+pub fn get_transaction(
+    id: i32,
+    connection: connection::DbConnection,
+) -> Result<Json<model::Transaction>, Status> {
+    repository::get_transaction(id, &connection)
+        .map(|trans| Json(trans))
+        .map_err(|error| error_status(error))
+}
+
+#[put("/<id>", format = "application/json", data = "<transaction>")]
+pub fn update_transaction(
+    id: i32,
+    transaction: Json<model::Transaction>,
+    connection: connection::DbConnection,
+) -> Result<Json<model::Transaction>, Status> {
+    repository::update_transaction(id, transaction.into_inner(), &connection)
+        .map(|transaction| Json(transaction))
+        .map_err(|err| error_status(err))
+}
+
+#[delete("/<id>")]
+pub fn delete_transaction(
+    id: i32,
+    connection: connection::DbConnection,
+) -> Result<status::NoContent, Status> {
+    repository::delete_transaction(id, &connection)
+        .map(|_| status::NoContent)
+        .map_err(|error| error_status(error))
+}
+
 fn error_status(error: Error) -> Status {
     match error {
         Error::NotFound => Status::NotFound,

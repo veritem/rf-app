@@ -21,3 +21,26 @@ pub fn get_transactions(connection: &PgConnection) -> QueryResult<Vec<model::Tra
     .limit(10)
     .load::<model::Transaction>(&*connection)
 }
+
+pub fn get_transaction(
+  trans_id: i32,
+  connection: &PgConnection,
+) -> QueryResult<model::Transaction> {
+  transactions::table
+    .find(trans_id)
+    .get_result::<model::Transaction>(connection)
+}
+
+pub fn update_transaction(
+  trans_id: i32,
+  transaction: model::Transaction,
+  connection: &PgConnection,
+) -> QueryResult<model::Transaction> {
+  diesel::update(transactions::table.find(trans_id))
+    .set(&transaction)
+    .get_result(connection)
+}
+
+pub fn delete_transaction(transaction_id: i32, connection: &PgConnection) -> QueryResult<usize> {
+  diesel::delete(transactions::table.find(transaction_id)).execute(connection)
+}
