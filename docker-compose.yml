@@ -2,10 +2,12 @@ version: "3.9"
 services:
     db:
         image: "postgres:latest"
-        restart: "always"
+        restart: always
         environment:
             POSTGRESS_PWD: password
             POSTGRES_DB: iot-practice
+        ports:
+            - 5432:5432
         volumes:
             - "db_volume:/var/lib/postgresql/data"
 volumes:
