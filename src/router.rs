@@ -49,7 +49,7 @@ fn handle_frontend<'a>() -> response::Result<'a> {
     )
 }
 
-#[get("/<file..>")]
+#[get("/<file..>", rank = 1)]
 pub fn handle_frontend_assets<'r>(file: PathBuf) -> response::Result<'r> {
     let filename = file.display().to_string();
     AppUI::get(&filename).map_or_else(
@@ -60,7 +60,6 @@ pub fn handle_frontend_assets<'r>(file: PathBuf) -> response::Result<'r> {
                 .extension()
                 .and_then(OsStr::to_str)
                 .ok_or_else(|| Status::new(400, "Could not get the file extension"))?;
-
             let content_type = ContentType::from_extension(ext)
                 .ok_or_else(|| Status::new(400, "Could not get file content tpye"))?;
             response::Response::build()
@@ -75,16 +74,16 @@ pub fn create_routes() {
     rocket::ignite()
         .attach(CORS())
         .manage(connection::init_pool())
-        .mount("/", routes![handle_frontend, handle_frontend_assets])
         .mount(
             "/transactions",
             routes![
                 handler::all_transactions,
-                handler::create_transaction,
                 handler::get_transaction,
+                handler::create_transaction,
                 handler::update_transaction,
                 handler::delete_transaction
             ],
         )
+        .mount("/", routes![handle_frontend, handle_frontend_assets])
         .launch();
 }

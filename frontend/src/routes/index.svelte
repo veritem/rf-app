@@ -1,20 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	interface Transaction {
 		id: string;
 		initial_balance: string;
 		transport_fare: string;
 	}
 
-	onMount(() => {
-		setInterval(() => {
-			window.history.pushState({}, null, '/');
-			console.log(1);
-		}, 300);
-	});
+	let transactions: Promise<Transaction[]>;
 
-	let transactions: Promise<Transaction[]> = getTransactions();
+	$: transactions = getTransactions();
 
 	async function getTransactions(): Promise<Transaction[]> {
 		const res = await fetch('http://localhost:8000/transactions');

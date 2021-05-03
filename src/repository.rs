@@ -18,7 +18,7 @@ pub fn create_transaction(
 
 pub fn get_transactions(connection: &PgConnection) -> QueryResult<Vec<model::Transaction>> {
   transactions
-    .limit(10)
+    .limit(100)
     .load::<model::Transaction>(&*connection)
 }
 
