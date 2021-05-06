@@ -10,6 +10,8 @@ use crate::model;
 use crate::model::NewTransaction;
 use crate::repository;
 
+use rocket_contrib::uuid::Uuid;
+
 #[get("/")]
 pub fn all_transactions(
     connection: connection::DbConnection,
@@ -31,7 +33,7 @@ pub fn create_transaction(
 
 #[get("/<id>")]
 pub fn get_transaction(
-    id: i32,
+    id: Uuid,
     connection: connection::DbConnection,
 ) -> Result<Json<model::Transaction>, Status> {
     repository::get_transaction(id, &connection)
@@ -41,7 +43,7 @@ pub fn get_transaction(
 
 #[put("/<id>", format = "application/json", data = "<transaction>")]
 pub fn update_transaction(
-    id: i32,
+    id: Uuid,
     transaction: Json<model::Transaction>,
     connection: connection::DbConnection,
 ) -> Result<Json<model::Transaction>, Status> {
@@ -52,7 +54,7 @@ pub fn update_transaction(
 
 #[delete("/<id>")]
 pub fn delete_transaction(
-    id: i32,
+    id: Uuid,
     connection: connection::DbConnection,
 ) -> Result<status::NoContent, Status> {
     repository::delete_transaction(id, &connection)

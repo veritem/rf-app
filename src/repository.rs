@@ -7,6 +7,8 @@ use crate::model;
 use crate::schema::transactions;
 use crate::schema::transactions::dsl::*;
 
+use rocket_contrib::uuid::Uuid;
+
 pub fn create_transaction(
   new_trans: model::NewTransaction,
   connection: &PgConnection,
@@ -23,7 +25,7 @@ pub fn get_transactions(connection: &PgConnection) -> QueryResult<Vec<model::Tra
 }
 
 pub fn get_transaction(
-  trans_id: i32,
+  trans_id: Uuid,
   connection: &PgConnection,
 ) -> QueryResult<model::Transaction> {
   transactions::table
@@ -32,7 +34,7 @@ pub fn get_transaction(
 }
 
 pub fn update_transaction(
-  trans_id: i32,
+  trans_id: Uuid,
   transaction: model::Transaction,
   connection: &PgConnection,
 ) -> QueryResult<model::Transaction> {
@@ -41,6 +43,6 @@ pub fn update_transaction(
     .get_result(connection)
 }
 
-pub fn delete_transaction(transaction_id: i32, connection: &PgConnection) -> QueryResult<usize> {
+pub fn delete_transaction(transaction_id: Uuid, connection: &PgConnection) -> QueryResult<usize> {
   diesel::delete(transactions::table.find(transaction_id)).execute(connection)
 }
