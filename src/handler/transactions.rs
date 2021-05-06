@@ -6,16 +6,13 @@ use rocket::response::status;
 use rocket_contrib::json::Json;
 
 use crate::connection;
-use crate::model;
-use crate::model::NewTransaction;
+use crate::model::{NewTransaction, Transaction};
 use crate::repository;
-
-use rocket_contrib::uuid::Uuid;
 
 #[get("/")]
 pub fn all_transactions(
     connection: connection::DbConnection,
-) -> Result<Json<Vec<model::Transaction>>, Status> {
+) -> Result<Json<Vec<Transaction>>, Status> {
     repository::get_transactions(&connection)
         .map(|transaction| Json(transaction))
         .map_err(|error| error_status(error))
@@ -25,7 +22,7 @@ pub fn all_transactions(
 pub fn create_transaction(
     new_trans: Json<NewTransaction>,
     connection: connection::DbConnection,
-) -> Result<status::Created<Json<model::Transaction>>, Status> {
+) -> Result<status::Created<Json<Transaction>>, Status> {
     repository::create_transaction(new_trans.into_inner(), &connection)
         .map(|tran| transaction_created(tran))
         .map_err(|error| error_status(error))
@@ -33,9 +30,9 @@ pub fn create_transaction(
 
 #[get("/<id>")]
 pub fn get_transaction(
-    id: Uuid,
+    id: i32,
     connection: connection::DbConnection,
-) -> Result<Json<model::Transaction>, Status> {
+) -> Result<Json<Transaction>, Status> {
     repository::get_transaction(id, &connection)
         .map(|trans| Json(trans))
         .map_err(|error| error_status(error))
@@ -43,10 +40,10 @@ pub fn get_transaction(
 
 #[put("/<id>", format = "application/json", data = "<transaction>")]
 pub fn update_transaction(
-    id: Uuid,
-    transaction: Json<model::Transaction>,
+    id: i32,
+    transaction: Json<Transaction>,
     connection: connection::DbConnection,
-) -> Result<Json<model::Transaction>, Status> {
+) -> Result<Json<Transaction>, Status> {
     repository::update_transaction(id, transaction.into_inner(), &connection)
         .map(|transaction| Json(transaction))
         .map_err(|err| error_status(err))
@@ -54,7 +51,7 @@ pub fn update_transaction(
 
 #[delete("/<id>")]
 pub fn delete_transaction(
-    id: Uuid,
+    id: i32,
     connection: connection::DbConnection,
 ) -> Result<status::NoContent, Status> {
     repository::delete_transaction(id, &connection)
@@ -69,9 +66,7 @@ fn error_status(error: Error) -> Status {
     }
 }
 
-fn transaction_created(
-    transaction: model::Transaction,
-) -> status::Created<Json<model::Transaction>> {
+fn transaction_created(transaction: Transaction) -> status::Created<Json<Transaction>> {
     status::Created(
         format!(
             "{host}:{port}/transactions/{id}",

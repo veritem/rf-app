@@ -14,7 +14,7 @@ pub struct Transaction {
     pub card_id: Uuid,
 }
 
-#[derive(Queryable, AsChangeset, Debug)]
+#[derive(Queryable, AsChangeset, Serialize, Deserialize, Debug)]
 #[table_name = "cards"]
 pub struct Card {
     pub id: Uuid,
@@ -27,4 +27,10 @@ pub struct Card {
 pub struct NewTransaction {
     pub initial_balance: f64,
     pub transport_fare: f64,
+}
+
+#[derive(Insertable, Serialize, Deserialize)]
+#[table_name = "cards"]
+pub struct NewCard {
+    pub owner_names: String,
 }

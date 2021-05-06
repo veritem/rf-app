@@ -74,16 +74,20 @@ pub fn create_routes() {
     rocket::ignite()
         .attach(CORS())
         .manage(connection::init_pool())
+        .mount("/", routes![handle_frontend, handle_frontend_assets])
+        .mount(
+            "/cards",
+            routes![handler::cards::create_card, handler::cards::all_cards],
+        )
         .mount(
             "/transactions",
             routes![
-                handler::all_transactions,
-                handler::get_transaction,
-                handler::create_transaction,
-                handler::update_transaction,
-                handler::delete_transaction
+                handler::transactions::all_transactions,
+                handler::transactions::get_transaction,
+                handler::transactions::create_transaction,
+                handler::transactions::update_transaction,
+                handler::transactions::delete_transaction
             ],
         )
-        .mount("/", routes![handle_frontend, handle_frontend_assets])
         .launch();
 }
