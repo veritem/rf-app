@@ -27,6 +27,7 @@ pub struct Card {
 pub struct NewTransaction {
     pub initial_balance: f64,
     pub transport_fare: f64,
+    pub card_id: Uuid,
 }
 
 #[derive(Insertable, Serialize, Deserialize)]
