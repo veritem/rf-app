@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,5 +17,7 @@ jobs:
           path: ~/.pnpm-store
           key: cache-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
       - run: npm install --global pnpm
-      - run: pnpm install
-      - run: pnpm run lint:ci
+        working-directory: ./frontend
+
+      - run: pnpm build
+        working-directory: ./frontend
