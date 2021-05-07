@@ -1,18 +1,43 @@
 version: "3.9"
 services:
-    app:
-        build: .
-        ports:
-            - "8000:8000"
-    db:
-        image: "postgres:latest"
-        restart: always
-        environment:
-            POSTGRESS_PWD: password
-            POSTGRES_DB: iot-practice
-        ports:
-            - 5432:5432
-        volumes:
-            - "db_volume:/var/lib/postgresql/data"
+  frontend:
+    build:
+      context: frontend
+      target: development
+    networks:
+      - client-side
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/src:/code/src:ro
+  backend:
+    build:
+      context: backend
+      target: development
+    environment:
+      - DATABASE_URL=postgres://postgres:password@localhost:5432/rfid_db
+    networks:
+      - client-side
+      - server-side
+    volumes:
+      - ./backend/src:/code/src
+      - backend-cache:/code/target
+    depends_on:
+      - db
+  db:
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      - server-side
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+networks:
+  client-side: {}
+  server-side: {}
 volumes:
-    db_volume:
+  backend-cache: {}
+  db-data: {}

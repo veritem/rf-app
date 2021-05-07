@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@headlessui/react': ^1.1.1
   '@types/react': ^17.0.5
   autoprefixer: ^10.2.5
   next: 10.2.0
@@ -12,6 +13,7 @@ specifiers:
   typescript: ^4.2.4
 
 dependencies:
+  '@headlessui/react': 1.1.1_react@17.0.2
   next: 10.2.0_507781d099a67956587e23f5ac79078b
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -79,6 +81,15 @@ packages:
 
   /@hapi/hoek/9.2.0:
     resolution: {integrity: sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==}
+    dev: false
+
+  /@headlessui/react/1.1.1_react@17.0.2:
+    resolution: {integrity: sha512-fxNKxRrjNXdNYNMhAVrv1nz0gIMX3JhFizTA9lNrEC8+aY3JR00GZTPhuG785RZGvnHXCdYCGHeAhqw9uRNRrA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /@next/env/10.2.0:
