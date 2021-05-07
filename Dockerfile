@@ -16,7 +16,7 @@ RUN pnpm build
 
 
 # BACKEND
-FROM rust:1.51-alpine AS builder
+FROM rust:1.52-alpine AS builder
 
 WORKDIR /usr/src/app
 
