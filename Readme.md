@@ -1,4 +1,5 @@
 
-#### Data to deal with
+#### rfid_transaction
 
-initial_balance, the transport_fare, and the UUID
+
+This tool handles transactions on card.
