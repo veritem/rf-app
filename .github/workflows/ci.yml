@@ -10,13 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-        working-directory: ./frontend
         with:
           node-version: '15'
       - uses: actions/cache@main
+
         with:
           path: ~/.pnpm-store
           key: cache-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
       - run: npm install --global pnpm
-      - run: pnpm install
-      - run: pnpm run build
+      - name: build
+        working-directory: ./frontend
+        run: |
+         pnpm install
+         pnpm run build
