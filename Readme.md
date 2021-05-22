@@ -1,5 +1,5 @@
 
-## rfid transaction app
+### rfid transaction web app
 
 [![ci](https://github.com/makuzaverite/rfid_transaction/actions/workflows/ci.yml/badge.svg)](https://github.com/makuzaverite/rfid_transaction/actions/workflows/ci.yml)
 
