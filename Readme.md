@@ -9,6 +9,6 @@ The web app that works with rfid card reader used for embeded systems experiment
 
 ##### Tech stack
 
-- Rust with Rocket
-- Next.js 
+- Api: Rust with Rocket and PostgreSQL
+- Fronted: Next.js with typescript
 
