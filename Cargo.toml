@@ -18,7 +18,7 @@ serde_derive = "1.0.126"
 serde_json = "1.0.66"
 env_logger = "0.8.4"
 log = "0.4.14"
-rust-embed="5.9.0"
+rust-embed="6.2.0"
 chrono = { version = "0.4", features = ["serde"]}
 
 
