@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@headlessui/react': 1.2.0
   '@types/react': 17.0.11
-  autoprefixer: 10.2.6
+  autoprefixer: 10.3.6
   next: 10.2.3
   postcss: 8.3.4
   react: 17.0.2
@@ -21,9 +21,9 @@ dependencies:
 
 devDependencies:
   '@types/react': 17.0.11
-  autoprefixer: 10.2.6_postcss@8.3.4
+  autoprefixer: 10.3.6_postcss@8.3.4
   postcss: 8.3.4
-  tailwindcss: 2.1.4_505819627e86648d07c4e196a4237c15
+  tailwindcss: 2.1.4_603d89162c0fd422f7f6e25755810c7a
   typescript: 4.3.2
 
 packages:
@@ -272,17 +272,17 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /autoprefixer/10.2.6_postcss@8.3.4:
-    resolution: {integrity: sha512-8lChSmdU6dCNMCQopIf4Pe5kipkAGj/fvTMslCsih0uHpOrXOPUEVOmYMMqmw3cekQkSD7EhIeuYl5y0BLdKqg==}
+  /autoprefixer/10.3.6_postcss@8.3.4:
+    resolution: {integrity: sha512-3bDjTfF0MfZntwVCSd18XAT2Zndufh3Mep+mafbzdIQEeWbncVRUVDjH8/EPANV9Hq40seJ24QcYAyhUsFz7gQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      browserslist: 4.16.6
-      caniuse-lite: 1.0.30001235
-      colorette: 1.2.2
+      browserslist: 4.17.1
+      caniuse-lite: 1.0.30001260
       fraction.js: 4.1.1
+      nanocolors: 0.2.8
       normalize-range: 0.1.2
       postcss: 8.3.4
       postcss-value-parser: 4.1.0
@@ -405,6 +405,19 @@ packages:
       electron-to-chromium: 1.3.727
       escalade: 3.1.1
       node-releases: 1.1.71
+    dev: false
+
+  /browserslist/4.17.1:
+    resolution: {integrity: sha512-aLD0ZMDSnF4lUt4ZDNgqi5BUn9BZ7YdQdI/cYlILrhdSSZJLU9aNZoD5/NBmM4SK34APB2e83MOsRt1EnkuyaQ==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+    dependencies:
+      caniuse-lite: 1.0.30001260
+      electron-to-chromium: 1.3.850
+      escalade: 3.1.1
+      nanocolors: 0.1.12
+      node-releases: 1.1.76
+    dev: true
 
   /buffer-xor/1.0.3:
     resolution: {integrity: sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=}
@@ -451,6 +464,13 @@ packages:
 
   /caniuse-lite/1.0.30001235:
     resolution: {integrity: sha512-zWEwIVqnzPkSAXOUlQnPW2oKoYb2aLQ4Q5ejdjBcnH63rfypaW34CxaeBn1VMya2XaEU3P/R2qHpWyj+l0BT1A==}
+    dev: false
+
+  /caniuse-lite/1.0.30001260:
+    resolution: {integrity: sha512-Fhjc/k8725ItmrvW5QomzxLeojewxvqiYCKeFcfFEhut28IVLdpHU19dneOmltZQIE5HNbawj1HYD+1f2bM1Dg==}
+    dependencies:
+      nanocolors: 0.1.12
+    dev: true
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -723,6 +743,11 @@ packages:
 
   /electron-to-chromium/1.3.727:
     resolution: {integrity: sha512-Mfz4FIB4FSvEwBpDfdipRIrwd6uo8gUDoRDF4QEYb4h4tSuI3ov594OrjU6on042UlFHouIJpClDODGkPcBSbg==}
+    dev: false
+
+  /electron-to-chromium/1.3.850:
+    resolution: {integrity: sha512-ZzkDcdzePeF4dhoGZQT77V2CyJOpwfTZEOg4h0x6R/jQhGt/rIRpbRyVreWLtD7B/WsVxo91URm2WxMKR9JQZA==}
+    dev: true
 
   /elliptic/6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
@@ -879,6 +904,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     optional: true
 
   /function-bind/1.1.1:
@@ -1309,6 +1335,14 @@ packages:
     resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}
     dev: false
 
+  /nanocolors/0.1.12:
+    resolution: {integrity: sha512-2nMHqg1x5PU+unxX7PGY7AuYxl2qDx7PSrTRjizr8sxdd3l/3hBuWWaki62qmtYm2U5i4Z5E7GbjlyDFhs9/EQ==}
+    dev: true
+
+  /nanocolors/0.2.8:
+    resolution: {integrity: sha512-lFtwopLYUwJ/w+VcBib+Ti1J+USzc/m2XN9LCCl/AhibkzYlXk6FHeqkJqBWRd70RpjArGWYZQjwa6UgwYycBA==}
+    dev: true
+
   /nanoid/3.1.22:
     resolution: {integrity: sha512-/2ZUaJX2ANuLtTvqTlgqBQNJoQO398KyJgZloL0PZkC0dpysjncRUPsFe3DUPzz/y3h+u7C46np8RMuvF3jsSQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -1448,6 +1482,11 @@ packages:
 
   /node-releases/1.1.71:
     resolution: {integrity: sha512-zR6HoT6LrLCRBwukmrVbHv0EpEQjksO6GmFcZQQuCAy139BEsoVKPYnf3jongYW83fAa1torLGYwxxky/p28sg==}
+    dev: false
+
+  /node-releases/1.1.76:
+    resolution: {integrity: sha512-9/IECtNr8dXNmPWmFXepT0/7o5eolGesHUa3mtr0KlgnCvnZxwh2qensKL42JJY2vQKC3nIBXetFAqR+PW1CmA==}
+    dev: true
 
   /normalize-path/3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -2099,7 +2138,7 @@ packages:
       react: 17.0.2
     dev: false
 
-  /tailwindcss/2.1.4_505819627e86648d07c4e196a4237c15:
+  /tailwindcss/2.1.4_603d89162c0fd422f7f6e25755810c7a:
     resolution: {integrity: sha512-fh1KImDLg6se/Suaelju/5oFbqq1b0ntagmGLu0aG9LlnNPGHgO1n/4E57CbKcCtyz/VYnvVXUiWmfyfBBZQ6g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
@@ -2108,7 +2147,7 @@ packages:
       postcss: ^8.0.9
     dependencies:
       '@fullhuman/postcss-purgecss': 3.1.3
-      autoprefixer: 10.2.6_postcss@8.3.4
+      autoprefixer: 10.3.6_postcss@8.3.4
       bytes: 3.1.0
       chalk: 4.1.1
       chokidar: 3.5.1
